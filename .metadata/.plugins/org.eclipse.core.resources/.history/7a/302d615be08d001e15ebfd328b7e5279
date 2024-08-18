@@ -1,0 +1,41 @@
+package org.jsp.jpademo.controller;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import org.jsp.jpademo.dto.Person;
+
+import java.util.Scanner;
+
+public class FindByName {
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the person name to dispay details");
+		String name=sc.next();
+		EntityManager manager=Persistence.createEntityManagerFactory("jpa").createEntityManager();
+		Query q=manager.createNamedQuery("findbyname");
+		q.setParameter(1, name);
+		List<Person>ps=q.getResultList();
+		if(ps.size()>0)
+		{
+			for(Person p:ps)
+			{
+				System.out.println("person id:"+p.getId());
+				System.out.println("name :"+p.getName());
+				System.out.println("phone no:"+p.getPhone());
+				System.out.println("gender:"+p.getGender());
+				System.out.println("age:"+p.getAge());
+				System.out.println("=======================");
+			}
+		}
+			else
+			{
+				System.out.println("no person found with entered name");
+			}
+		
+	}
+}

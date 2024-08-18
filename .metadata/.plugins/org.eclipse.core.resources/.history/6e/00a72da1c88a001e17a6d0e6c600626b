@@ -1,0 +1,15 @@
+package org.jsp.hibernatedemo;
+
+import javax.persistence.Query;
+
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+
+public class FetchNames {
+	public static void main(String[] args) {
+		String qry = "select u.name from User u";
+		Session s = new Configuration().configure().buildSessionFactory().openSession();
+		Qu
+	}
+
+}
